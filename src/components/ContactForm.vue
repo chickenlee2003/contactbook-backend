@@ -75,6 +75,7 @@ export default {
   },
   emits: ["submit:contact", "delete:contact"],
   props: {
+    mode: { type: String, required: true },
     contact: { type: Object, required: true },
   },
   data() {
@@ -99,7 +100,7 @@ export default {
     return {
       // Chúng ta sẽ không muốn hiệu chỉnh props, nên tạo biến cục bộ
       // contactLocal để liên kết với các input trên form
-      contactLocal: this.contact,
+      contactLocal: this.mode === "add" ? {} : { ...this.contact },
       contactFormSchema,
     };
   },
